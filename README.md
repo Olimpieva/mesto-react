@@ -1,3 +1,53 @@
+# Проект: Галерея
+
+>  Сервис включает в себя галерею изображений с функциями: редактирование личной информации и изображения профиля, загрузка и удаление изображений в галерею, система лайков, валидация полей ввода. Сайт свёрстан на основе макета в figma методом Mobile First.
+
+>  [Ссылка на проект](https://olimpieva.github.io/mesto-react)
+
+СТЕК ТЕХНОЛОГИЙ
+------------
+
+* HTML
+* CSS
+* JavaScript
+* React
+* Webpack
+* БЭМ 
+* Nested
+
+ПЛАНЫ НА ДОРАБОТКУ
+-----------
+
+Реализовать функции добавления и удаления фотографий из галереи, систему лайков, редактирование пользовательской информации, аватара.
+
+>  [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)  
+
+
+# Project: Gallery
+
+> This repository contains a small training project to practicing programming skills and interacting with DOM. The service includes a little image gallery with the following functions: editing avatar/personal information ability, Uploading/removing images in gallery, displaying images in the original size, likes, form validation  . The site is compiled based on the layout in figma using the Mobile First method.
+
+>  [Link to project](https://olimpieva.github.io/mesto-react)
+
+STACK
+------------
+
+* HTML
+* CSS
+* JavaScript
+* React
+* Webpack
+* BEM 
+* Nested
+
+WHAT'S NEXT
+-----------
+
+Implement a adding/removing photos functions from the gallery, likes system, editing user information/avatar functions.
+
+
+>  [Link to layout in Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1) 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -16,9 +66,7 @@ You will also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
+Launches the test runner in the interactive watch mode.
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -26,8 +74,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `npm run eject`
 
