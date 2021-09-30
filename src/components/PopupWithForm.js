@@ -6,7 +6,6 @@ function PopupWithForm(props) {
     const overlayRef = useRef(null);
 
     function onOverlayClick(event) {
-        console.log({ event, ref: overlayRef.current })
         if (event.target === overlayRef.current) {
             props.onClose()
         }

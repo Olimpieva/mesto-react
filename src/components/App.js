@@ -51,7 +51,7 @@ function App() {
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}>
         <fieldset className="popup__input-fieldset">
-          <input className="popup__input popup__input_type_link" id="avatar-link" type="url" value={""}
+          <input className="popup__input popup__input_type_link" id="avatar-link" type="url" value="" onChange={() => { }}
             placeholder="Ссылка на картинку" name="avatar" required />
           <span className="popup__input-error" id="avatar-link-error"></span>
         </fieldset>
@@ -61,12 +61,12 @@ function App() {
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}>
         <fieldset className="popup__input-fieldset">
-          <input className="popup__input popup__input_type_name" id="profile-name" type="text" value={""}
+          <input className="popup__input popup__input_type_name" id="profile-name" type="text" value="" onChange={() => { }}
             placeholder="Введите имя" name="name" minLength="2" maxLength="40" required />
           <span className="popup__input-error" id="profile-name-error"></span>
         </fieldset>
         <fieldset className="popup__input-fieldset">
-          <input className="popup__input popup__input_type_caption" id="profile-caption" type="text" value={""}
+          <input className="popup__input popup__input_type_caption" id="profile-caption" type="text" value="" onChange={() => { }}
             placeholder="Введите описание" name="about" minLength="2" maxLength="200" required />
           <span className="popup__input-error" id="profile-caption-error"></span>
         </fieldset>
@@ -76,12 +76,12 @@ function App() {
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}>
         <fieldset className="popup__input-fieldset">
-          <input className="popup__input popup__input_type_caption" id="card-name" type="text" value={""}
+          <input className="popup__input popup__input_type_caption" id="card-name" type="text" value="" onChange={() => { }}
             placeholder="Название" name="name" minLength="2" maxLength="30" required />
           <span className="popup__input-error" id="card-name-error"></span>
         </fieldset>
         <fieldset className="popup__input-fieldset">
-          <input className="popup__input popup__input_type_link" id="card-link" type="url" value={""}
+          <input className="popup__input popup__input_type_link" id="card-link" type="url" value="" onChange={() => { }}
             placeholder="Ссылка на картинку" name="link" required />
           <span className="popup__input-error" id="card-link-error"></span>
         </fieldset>
