@@ -41,6 +41,7 @@ class Api {
     }
 
     updateAvatar(avatarLink) {
+        console.log(avatarLink)
         return this._sendRequest(`users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
@@ -68,20 +69,19 @@ class Api {
         })
     }
 
-    likeCard(cardId) {
-        return this._sendRequest(`cards/likes/${cardId}`, {
-            method: 'PUT',
-            headers: this._headers,
-        })
+    changeLikeCardStatus(cardId, isLiked) {
+        if (isLiked) {
+            return this._sendRequest(`cards/likes/${cardId}`, {
+                method: 'DELETE',
+                headers: this._headers,
+            })
+        } else {
+            return this._sendRequest(`cards/likes/${cardId}`, {
+                method: 'PUT',
+                headers: this._headers,
+            })
+        }
     }
-
-    dislikeCard(cardId) {
-        return this._sendRequest(`cards/likes/${cardId}`, {
-            method: 'DELETE',
-            headers: this._headers,
-        })
-    }
-
 }
 
 const api = new Api(apiOptions);

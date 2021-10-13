@@ -1,44 +1,21 @@
 
-import React, { useEffect, useState } from 'react';
-import api from '../utils/Api';
+import React, { useContext } from 'react';
 import Profile from './Profile';
 import Card from './Card';
+import { CurrentUserContext } from '../context/CurrentUserContext';
 
-function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
+function Main({ onEditAvatar, onEditProfile, onAddPlace, cards, onCardClick, onCardLike, onCardDelete }) {
 
-    const [userName, setUserName] = useState('');
-    const [userDescription, setuserDescription] = useState('');
-    const [userAvatar, setuserAvatar] = useState('');
-    const [cards, setCards] = useState([]);
-    const [userId, setUserId] = useState(null)
-
-    useEffect(() => {
-        api.getUserInfo()
-            .then(userData => {
-                setUserId(userData._id)
-                setUserName(userData.name);
-                setuserDescription(userData.about);
-                setuserAvatar(userData.avatar);
-            })
-            .catch(error => console.log(`Произошла ошибка: ${error}`));
-    }, [])
-
-    useEffect(() => {
-        api.getInitialCards()
-            .then(initialCards => {
-                setCards(initialCards);
-            })
-            .catch(error => console.log(`Произошла ошибка: ${error}`));
-    }, [])
+    const currentUser = useContext(CurrentUserContext)
 
     return (
         <main className="content">
 
             <section className="profile content__profile">
                 <Profile
-                    userName={userName}
-                    userDescription={userDescription}
-                    userAvatar={userAvatar}
+                    userName={currentUser.name}
+                    userDescription={currentUser.about}
+                    userAvatar={currentUser.avatar}
                     onEditAvatar={onEditAvatar}
                     onEditProfile={onEditProfile}
                     onAddPlace={onAddPlace} />
@@ -47,8 +24,12 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
             <section className="gallery content__gallery">
                 <ul className="cards">
                     {cards.map((card) => (
-                        <Card key={card._id} card={card} userId={userId}
-                            onCardClick={onCardClick} />
+                        <Card
+                            key={card._id}
+                            card={card}
+                            onCardClick={onCardClick}
+                            onCardLike={onCardLike}
+                            onCardDelete={onCardDelete} />
                     ))}
                 </ul>
             </section>
