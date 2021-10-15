@@ -25,7 +25,7 @@ function EditAvatarPopup(props) {
                 <input className="popup__input popup__input_type_link" id="avatar-link" name="avatar"
                     type="url"
                     placeholder="Ссылка на картинку"
-                    ref={avatarRef}
+                    ref={avatarRef || ''}
                     required />
                 <span className="popup__input-error"
                     id="avatar-link-error"></span>

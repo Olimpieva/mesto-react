@@ -41,7 +41,6 @@ class Api {
     }
 
     updateAvatar(avatarLink) {
-        console.log(avatarLink)
         return this._sendRequest(`users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,

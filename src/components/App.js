@@ -13,12 +13,12 @@ import { CurrentUserContext } from '../context/CurrentUserContext';
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState({ name: '', about: '', avatar: '' });
+  const [currentUser, setCurrentUser] = useState({});
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [cards, setCards] = useState([]);
-  const [selectedCard, setSelectedCard] = useState({});
+  const [selectedCard, setSelectedCard] = useState(null);
   const [cardToDelete, setCardToDelete] = useState(null)
 
   useEffect(() => {
@@ -110,7 +110,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setSelectedCard({});
+    setSelectedCard(null);
     setCardToDelete(null);
   }
 
@@ -144,7 +144,7 @@ function App() {
           onAddPlace={handleAddPlaceSubmit} />
 
         <ImagePopup
-          card={selectedCard}
+          card={selectedCard || {}}
           onClose={closeAllPopups} />
 
         <ConfirmationPopup
