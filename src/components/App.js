@@ -8,6 +8,7 @@ import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
+import ConfirmationPopup from './ConfirmationPopup';
 import { CurrentUserContext } from '../context/CurrentUserContext';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
+  const [cardToDelete, setCardToDelete] = useState(null)
 
   useEffect(() => {
     api.getUserInfo()
@@ -65,7 +67,7 @@ function App() {
       .catch(error => console.log(`Произошла ошибка: ${error}`));
   }
 
-  function handlerCardClick(card) {
+  function handleCardClick(card) {
     setSelectedCard(card);
   }
 
@@ -80,15 +82,8 @@ function App() {
       })
       .catch(error => console.log(`Произошла ошибка: ${error}`));
   }
-
-  function handleCardDelete(card) {
-    api.removeCard(card._id)
-      .then(() => {
-        setCards((prevCards) => {
-          return prevCards.filter((prevCard) => prevCard._id !== card._id)
-        });
-      })
-      .catch(error => console.log(`Произошла ошибка: ${error}`));
+  function handleCardTrashClick(card) {
+    setCardToDelete(card)
   }
 
   function handleAddPlaceSubmit(cardInfo) {
@@ -100,11 +95,23 @@ function App() {
       .catch(error => console.log(`Произошла ошибка: ${error}`));
   }
 
+  function handleDeleteCard(card) {
+    api.removeCard(card._id)
+      .then(() => {
+        setCards((prevCards) => {
+          return prevCards.filter((prevCard) => prevCard._id !== card._id)
+        });
+      })
+      .catch(error => console.log(`Произошла ошибка: ${error}`));
+    closeAllPopups();
+  }
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setSelectedCard({});
+    setCardToDelete(null);
   }
 
   return (
@@ -116,9 +123,9 @@ function App() {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           cards={cards}
-          onCardClick={handlerCardClick}
+          onCardClick={handleCardClick}
           onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete} />
+          onCardDelete={handleCardTrashClick} />
         <Footer />
 
         <EditAvatarPopup
@@ -140,6 +147,10 @@ function App() {
           card={selectedCard}
           onClose={closeAllPopups} />
 
+        <ConfirmationPopup
+          data={cardToDelete}
+          onClose={closeAllPopups}
+          onSubmit={handleDeleteCard} />
       </div>
     </CurrentUserContext.Provider>
   );
