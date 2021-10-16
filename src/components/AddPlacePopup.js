@@ -21,10 +21,16 @@ function AddPlacePopup(props) {
         })
     }
 
+    const handleOnClose = () => {
+        onClose();
+        setName('');
+        setLink('');
+    }
+
     return (
         <PopupWithForm name="card" title="Новое место" buttonText="Создать"
             isOpen={isOpen}
-            onClose={onClose}
+            onClose={handleOnClose}
             onSubmit={handleSubmit}>
             <fieldset className="popup__input-fieldset">
                 <input className="popup__input popup__input_type_caption" id="card-name" name="name"

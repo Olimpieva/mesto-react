@@ -1,17 +1,26 @@
 
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function EditAvatarPopup(props) {
 
     const { isOpen, onClose, onUpdateAvatar } = props;
-    const avatarRef = useRef();
+    const [link, setLink] = useState();
+
+    const handleInputChange = (event) => {
+        setLink(event.target.value);
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         onUpdateAvatar({
-            avatar: avatarRef.current.value
+            avatar: link,
         })
+    }
+
+    const handleOnClose = () => {
+        onClose();
+        setLink('');
     }
 
     return (
@@ -19,13 +28,14 @@ function EditAvatarPopup(props) {
             title="Обновить аватар"
             buttonText="Сохранить"
             isOpen={isOpen}
-            onClose={onClose}
+            onClose={handleOnClose}
             onSubmit={handleSubmit}>
             <fieldset className="popup__input-fieldset">
                 <input className="popup__input popup__input_type_link" id="avatar-link" name="avatar"
                     type="url"
                     placeholder="Ссылка на картинку"
-                    ref={avatarRef || ''}
+                    value={link || ''}
+                    onChange={handleInputChange}
                     required />
                 <span className="popup__input-error"
                     id="avatar-link-error"></span>

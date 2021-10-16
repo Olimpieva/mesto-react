@@ -19,12 +19,12 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [cardToDelete, setCardToDelete] = useState(null)
+  const [cardToDelete, setCardToDelete] = useState(null);
 
   useEffect(() => {
     api.getUserInfo()
       .then(userData => {
-        setCurrentUser(userData)
+        setCurrentUser(userData);
       })
       .catch(error => console.log(`Произошла ошибка: ${error}`));
   }, [])
@@ -35,6 +35,18 @@ function App() {
         setCards(initialCards);
       })
       .catch(error => console.log(`Произошла ошибка: ${error}`));
+  }, [])
+
+  useEffect(() => {
+    const closeByEscape = (e) => {
+      if (e.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+
+    document.addEventListener('keydown', closeByEscape);
+
+    return () => document.removeEventListener('keydown', closeByEscape);
   }, [])
 
   function handleEditAvatarClick() {
@@ -77,7 +89,7 @@ function App() {
     api.changeLikeCardStatus(card._id, isLiked)
       .then((updatedCard) => {
         setCards((prevCards) => {
-          return prevCards.map((prevCard) => prevCard._id === card._id ? updatedCard : prevCard)
+          return prevCards.map((prevCard) => prevCard._id === card._id ? updatedCard : prevCard);
         });
       })
       .catch(error => console.log(`Произошла ошибка: ${error}`));
@@ -99,11 +111,11 @@ function App() {
     api.removeCard(card._id)
       .then(() => {
         setCards((prevCards) => {
-          return prevCards.filter((prevCard) => prevCard._id !== card._id)
+          closeAllPopups();
+          return prevCards.filter((prevCard) => prevCard._id !== card._id);
         });
       })
       .catch(error => console.log(`Произошла ошибка: ${error}`));
-    closeAllPopups();
   }
 
   function closeAllPopups() {
